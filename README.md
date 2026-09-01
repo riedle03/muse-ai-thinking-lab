@@ -6,7 +6,8 @@
 
 ## 주소
 
-배포 후 이 칸을 채웁니다.
+https://muse-ai-thinking-lab.vercel.app/  
+GitHub: https://github.com/riedle03/muse-ai-thinking-lab
 
 로컬: `python -m http.server 8766` 후 http://127.0.0.1:8766  
 챗 API는 Vercel에 올렸을 때만 GPT가 붙습니다. 로컬·키 없음이면 같은 화면이 로컬 꼬리질문으로 돕니다.
