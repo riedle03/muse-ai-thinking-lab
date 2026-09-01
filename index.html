@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>생각 중 · 고등 탐구</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fonts-archive/Paperlogy/Paperlogy.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/app.css" />
+  </head>
+  <body data-view="hub">
+    <a class="skip" href="#hub">본문으로</a>
+    <header class="top no-print">
+      <a class="brand" href="#hub">
+        <span class="sun" aria-hidden="true"></span>
+        <span>
+          <strong>생각 중</strong>
+          <small>질문하기 · 탐구하기 · 쓰기</small>
+        </span>
+      </a>
+      <nav class="main-nav" aria-label="수업 걸음">
+        <a href="#hub">처음</a>
+        <a href="#ask">질문하기</a>
+        <a href="#inquire">탐구하기</a>
+        <a href="#write">쓰기</a>
+        <a class="teacher-only" href="#guide">지도안</a>
+      </nav>
+      <button type="button" id="teacher" class="ghost" aria-pressed="false">교사</button>
+    </header>
+
+    <section id="hub" class="hub">
+      <div class="hero">
+        <p class="eyebrow">국립중앙과학관 특별전 · Thinking or Calculating</p>
+        <h1>지금 무슨 생각을<br />하고 있나요?</h1>
+        <p class="lede">
+          고등만의 세 걸음입니다. 생각의 정의를 외우지 않습니다. 질문을 세우고, 한 자리에서 재고, 한 문장으로 씁니다.
+        </p>
+        <div class="hero-cta">
+          <a class="btn primary" href="#ask">1. 질문 남기기</a>
+          <a class="btn" href="#inquire">2. 탐구하기</a>
+        </div>
+        <ul class="bubbles" aria-hidden="true">
+          <li>오늘 뭐 입지?</li>
+          <li>오늘 우산 갈까, 말까?</li>
+          <li>10년 뒤의 나는?</li>
+        </ul>
+      </div>
+      <ol class="path">
+        <li>
+          <span class="n">1</span>
+          <strong>질문하기</strong>
+          <p>내 질문을 쓰고, 모둠이 한 줄을 고릅니다.</p>
+          <a href="#ask">탐구질문카드</a>
+        </li>
+        <li>
+          <span class="n">2</span>
+          <strong>탐구하기</strong>
+          <p>네 자리 중 하나만. 미터에 나온 숫자를 적습니다.</p>
+          <a href="#inquire">탐구하러 가기</a>
+        </li>
+        <li>
+          <span class="n">3</span>
+          <strong>쓰기</strong>
+          <p>질문, 잰 것, 한 문장. 종이에 적습니다.</p>
+          <a href="#write">종이 열기</a>
+        </li>
+      </ol>
+      <h2 class="block-title">오늘 탐구할 자리, 하나만</h2>
+      <div id="cards" class="stations"></div>
+    </section>
+
+    <section id="inquire-view" class="paper-view" hidden>
+      <div class="pick">
+        <p class="meta">2걸음 · 탐구하기</p>
+        <h1>네 자리 중 하나</h1>
+        <p>이매지너리와 같습니다. 모둠은 한 자리만 깊게 갑니다. 깨기가 목적이 아닙니다.</p>
+        <div id="inquire-cards" class="stations"></div>
+      </div>
+    </section>
+
+    <section id="play" class="play" hidden>
+      <div class="stage-col">
+        <p id="mode-tag" class="mode-tag no-print">탐구하기</p>
+        <p id="ask-strip" class="ask-strip no-print" hidden></p>
+        <p id="meter" class="meter no-print">—</p>
+        <div class="hud no-print">
+          <p id="stat">—</p>
+          <div class="hud-actions">
+            <button type="button" id="btn-reset">처음부터</button>
+            <a id="to-sheet" class="ghost" href="#write">쓰기로</a>
+          </div>
+        </div>
+        <div id="stage" class="stage"></div>
+      </div>
+      <aside class="plaque no-print" id="plaque"></aside>
+    </section>
+
+    <section id="ask-view" class="paper-view" hidden>
+      <div id="ask-root"></div>
+    </section>
+
+    <section id="chat-view" class="play chat-play" hidden>
+      <div class="stage-col">
+        <p class="mode-tag no-print">탐구하기 · 되물음</p>
+        <p id="chat-strip" class="ask-strip no-print" hidden></p>
+        <p id="chat-meter" class="meter no-print">턴 0</p>
+        <div id="chat-log" class="chat-log" aria-live="polite"></div>
+        <form id="chat-form" class="chat-form no-print">
+          <label class="sr">내 답
+            <textarea id="chat-input" rows="2" required placeholder="한 문장으로"></textarea>
+          </label>
+          <button type="submit" class="next">보내기</button>
+        </form>
+        <p id="chat-note" class="hint-mute no-print"></p>
+        <a class="btn" href="#write">쓰기로</a>
+      </div>
+      <aside class="plaque no-print" id="chat-plaque"></aside>
+    </section>
+
+    <section id="sheet-view" class="paper-view" hidden>
+      <div class="paper-bar no-print">
+        <button type="button" id="sheet-print">인쇄 / PDF</button>
+        <a id="sheet-play" class="ghost" href="#inquire">자리로</a>
+      </div>
+      <div id="sheet-root"></div>
+    </section>
+
+    <section id="guide-view" class="paper-view" hidden>
+      <div class="paper-bar no-print">
+        <button type="button" id="guide-print">인쇄 / PDF</button>
+      </div>
+      <div id="guide-root"></div>
+    </section>
+
+    <footer class="foot no-print">
+      <div class="who">
+        <strong>MUSE-AI</strong>
+        <p>2026년 과학관 인공지능(AI) 교육 교사연구회 · 고등</p>
+        <small>전시는 답을 고르지 않았다. 보드는 1차 자료.</small>
+      </div>
+      <a class="nsm" href="https://www.science.go.kr/" target="_blank" rel="noopener noreferrer">
+        <img src="assets/nsm-logo.svg" alt="국립중앙과학관" width="194" height="47" />
+      </a>
+    </footer>
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>
