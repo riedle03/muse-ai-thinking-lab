@@ -7,8 +7,8 @@
   --coral-deep: #8e2c1a;
   --mosaic: #e07a5f;
   --wall: #2a2420;
-  --display: "Gowun Batang", "Source Han Serif KR", serif;
-  --sans: "IBM Plex Sans KR", "Pretendard", sans-serif;
+  --display: Paperlogy, "Apple SD Gothic Neo", sans-serif;
+  --sans: Paperlogy, "Apple SD Gothic Neo", sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, monospace;
 }
 * { box-sizing: border-box; }
