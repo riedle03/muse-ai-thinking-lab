@@ -1,12 +1,13 @@
 :root {
-  --paper: #fffcf8;
-  --ink: #1b1612;
-  --muted: #6f675f;
-  --rule: #e6d9ce;
+  --paper: #eef1f5;
+  --ink: #14181d;
+  --muted: #5a6570;
+  --rule: #c5ccd6;
   --coral: #c4452b;
   --coral-deep: #8e2c1a;
   --mosaic: #e07a5f;
-  --wall: #2a2420;
+  --wall: #1c2228;
+  --flush: #ffe0d8;
   --display: Paperlogy, "Apple SD Gothic Neo", sans-serif;
   --sans: Paperlogy, "Apple SD Gothic Neo", sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, monospace;
@@ -16,7 +17,7 @@ html, body { margin: 0; }
 body {
   font-family: var(--sans);
   background:
-    linear-gradient(90deg, transparent 23px, rgb(196 69 43 / 0.06) 24px) 0 0 / 24px 24px,
+    linear-gradient(90deg, transparent 23px, rgb(20 24 29 / 0.06) 24px) 0 0 / 24px 24px,
     var(--paper);
   color: var(--ink);
   line-height: 1.55;
@@ -39,7 +40,7 @@ a { color: var(--coral-deep); }
   padding: 10px 22px;
   border-bottom: 1px solid var(--rule);
   position: sticky; top: 0;
-  background: rgb(255 252 248 / 0.94);
+  background: rgb(238 241 245 / 0.94);
   backdrop-filter: blur(8px);
   z-index: 5;
 }
@@ -173,7 +174,7 @@ body.is-teacher .main-nav a.teacher-only { display: inline-flex; }
 }
 .meter {
   font-family: var(--mono); font-size: 16px; font-weight: 600;
-  background: var(--wall); color: #f6eee6;
+  background: var(--wall); color: #e8eef4;
   padding: 10px 14px;
   image-rendering: pixelated;
   box-shadow: 8px 0 0 var(--coral) inset;
@@ -223,7 +224,7 @@ input, textarea, select {
   min-height: 48px; background: #fff;
 }
 .choice.is-calc { box-shadow: inset 3px 0 0 var(--muted); }
-.choice.is-pick { background: #fde8e1; box-shadow: inset 3px 0 0 var(--coral); }
+.choice.is-pick { background: var(--flush); box-shadow: inset 3px 0 0 var(--coral); }
 .side {
   display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px;
 }
@@ -236,7 +237,7 @@ input, textarea, select {
 }
 .num-board button {
   position: absolute; width: 48px; height: 48px; border-radius: 0;
-  background: #f4efe6; font-weight: 700; border: 0;
+  background: #e8eef4; font-weight: 700; border: 0;
 }
 .diff-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .diff-wrap svg { width: 100%; height: auto; background: #d7ecff; touch-action: manipulation; }
@@ -250,7 +251,7 @@ input, textarea, select {
 }
 .bubble { margin: 10px 0; padding: 10px 12px; max-width: 92%; }
 .bubble.ai { background: var(--wall); color: #fff; }
-.bubble.me { background: #fde8e1; margin-left: auto; }
+.bubble.me { background: var(--flush); margin-left: auto; }
 .chat-form { display: grid; gap: 8px; margin: 12px 0; }
 .hint-mute { color: var(--muted); font-size: 14px; }
 .red-sheet { background: #fff; padding: 28px; max-width: 720px; margin: 0 auto; border: 1px solid var(--rule); }
