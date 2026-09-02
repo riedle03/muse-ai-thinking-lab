@@ -13,7 +13,10 @@ export function fallbackReply(history) {
   const n = users.length;
 
   if (n >= 6) {
-    return "지금까지 네 문장 중, 아직 네가 못 받은 게 있다면 어느 문장인가. 그 줄을 쓰기 칸에 옮겨.";
+    return "전시를 나서며 다시 묻는다. 지금 무슨 생각을 하고 있나요. 들어가며 적은 것과 같은가.";
+  }
+  if (/에너지|전력|전기료/.test(last)) {
+    return "같은 질문에 답하려고 뇌와 기계가 쓰는 에너지가 다르다면, 그건 생각의 차이인가 계산의 차이인가?";
   }
   if (/아무 생각|생각 없|멍/.test(last)) {
     return "아무 생각도 안 하고 있다고 했는데, 그것도 생각 아닐까?";

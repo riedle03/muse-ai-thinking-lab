@@ -62,7 +62,7 @@ export function mountChat({ logEl, formEl, inputEl, meterEl, noteEl, onStatus })
     }
     add("assistant", reply);
     if (turns >= 6) {
-      noteEl.textContent = "못 받은 문장 하나를 쓰기 3장에 옮기세요.";
+      noteEl.textContent = "에필로그입니다. 쓰기 3장에 처음과 같은지를 적으세요.";
       const card = loadCard();
       card.leftover = reply;
       saveCard(card);

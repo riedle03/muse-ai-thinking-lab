@@ -26,6 +26,7 @@ function show(name) {
     if (el) el.hidden = k !== name;
   });
   document.body.dataset.view = name;
+  markNav(name);
 }
 
 function teacherOn() {
@@ -36,6 +37,15 @@ function applyTeacher() {
   const on = teacherOn();
   document.body.classList.toggle("is-teacher", on);
   document.querySelector("#teacher").setAttribute("aria-pressed", on ? "true" : "false");
+}
+
+function markNav(view) {
+  const key = view === "play" || view === "chat" ? "inquire" : view;
+  document.querySelectorAll(".main-nav a[data-nav]").forEach((a) => {
+    const on = a.dataset.nav === key || (view === "hub" && a.dataset.nav === "hub");
+    if (on) a.setAttribute("aria-current", "page");
+    else a.removeAttribute("aria-current");
+  });
 }
 
 function renderHub() {
@@ -64,7 +74,8 @@ function openPlay(id) {
   session?.destroy?.();
   show("play");
   const q = loadCard();
-  document.querySelector("#mode-tag").textContent = `2걸음 · 탐구하기${q.id ? ` · ${q.id}` : ""}`;
+  const s = station(id);
+  document.querySelector("#mode-tag").textContent = `${s?.part || "탐구하기"}${q.id ? ` · ${q.id}` : ""}`;
   const strip = document.querySelector("#ask-strip");
   strip.hidden = false;
   strip.textContent = q.picked ? `우리 질문 · ${q.id || "카드"} · ${q.picked}` : "탐구질문카드에 모둠 질문을 먼저 남기세요.";
@@ -98,7 +109,7 @@ function openChat() {
   const form = document.querySelector("#chat-form");
   const fresh = form.cloneNode(true);
   form.replaceWith(fresh);
-  document.querySelector("#chat-plaque").innerHTML = `<p class="kicker">생각은 무엇인가</p><h2>꼬리질문</h2><p>한 번에 하나. 정의를 사지 마세요. 6턴이 지나면 못 받은 문장을 쓰기 칸으로.</p>`;
+  document.querySelector("#chat-plaque").innerHTML = `<p class="kicker">Part 1 · 나란히</p><h2>꼬리질문</h2><p>생성형 AI와 관람객의 생각을 나란히. 정의를 사지 마세요. 에필로그에서 처음과 같은지 다시 묻습니다.</p>`;
   chatSession = mountChat({
     logEl: log,
     formEl: fresh,

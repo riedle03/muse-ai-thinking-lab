@@ -2,7 +2,7 @@
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
-BASE = "http://127.0.0.1:8766/apps/thinking-lab/"
+BASE = "http://127.0.0.1:8767/"
 out = Path(__file__).resolve().parent.parent / "_shots"
 out.mkdir(exist_ok=True)
 logs = []
@@ -24,6 +24,7 @@ def main():
         shot(page, "hub.png")
 
         page.goto(BASE + "#ask", wait_until="networkidle")
+        page.fill("#rc-now", "우산을 갈까 말까")
         page.fill("#rc-group", "1모둠")
         page.fill("#rc-names", "검사")
         page.fill("#rc-mine", "아무 생각이 없는 것도 생각인가")
@@ -72,6 +73,7 @@ def main():
 
         page.goto(BASE + "#write", wait_until="networkidle")
         logs.append("write " + page.locator("#sheet-root .a4 h1").first.inner_text())
+        logs.append("epi " + page.locator("#sheet-root .epi").first.inner_text())
         shot(page, "write.png")
 
         page.set_viewport_size({"width": 390, "height": 844})

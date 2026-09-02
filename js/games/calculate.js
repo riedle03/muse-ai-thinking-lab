@@ -30,6 +30,12 @@ export const ITEMS = [
     note: "벽면 인용.",
   },
   {
+    stem: "같은 질문에 답할 때 뇌와 기계가 쓰는 에너지는",
+    options: ["같다", "다를 수 있다", "측정 불가다", "생각이 아니다"],
+    calc: "같다",
+    note: "리플릿 Part 4는 얼마나 다른지를 묻습니다. 빈도 계산기는 「같다」로 기울기 쉽습니다.",
+  },
+  {
     stem: "네 글자 유형이 나를",
     options: ["설명한다", "가둘 수도 있다", "치료한다", "계산한다"],
     calc: "설명한다",
@@ -53,14 +59,18 @@ export function mountCalculate(root, { onStatus } = {}) {
       const label = `일치 ${match}/${ITEMS.length} · ${sec}초`;
       onStatus?.({ label, match, total: ITEMS.length, sec });
       root.innerHTML = `
-        <h2>빈도 계산기와 ${match}칸이 같았습니다</h2>
-        <p>일치가 높다고 내가 계산기인 것은 아닙니다. 갈라진 칸을 활동지에 적으세요.</p>
-        <ol>${picks
-          .map(
-            (p, n) =>
-              `<li>${ITEMS[n].stem} → 나: ${p.pick} · 계산기: ${p.calc} ${p.match ? "(같음)" : "(갈라짐)"}</li>`
-          )
-          .join("")}</ol>
+        <h2>나란히 마주본 결과</h2>
+        <p>리플릿 Part 1. 일치 ${match}/${ITEMS.length}. 같다고 내가 계산기인 것은 아닙니다.</p>
+        <div class="side">
+          <article>
+            <h3>관람객 · 나</h3>
+            <ol>${picks.map((p, n) => `<li>${ITEMS[n].stem} → ${p.pick}</li>`).join("")}</ol>
+          </article>
+          <article>
+            <h3>생성형 AI · 빈도 계산기</h3>
+            <ol>${picks.map((p, n) => `<li>${p.calc} ${p.match ? "(같음)" : "(갈라짐)"}</li>`).join("")}</ol>
+          </article>
+        </div>
       `;
       return;
     }

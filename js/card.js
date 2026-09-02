@@ -10,6 +10,7 @@ export function emptyCard() {
     mine: "",
     why: "",
     picked: "",
+    now: "",
     where: "web",
     meter: "",
     leftover: "",
@@ -37,12 +38,15 @@ export function renderAsk(root, onIssued) {
   const c = loadCard();
   root.innerHTML = `
     <article class="a4 red-sheet">
-      <p class="meta">1차시 · 질문하기 · 고등</p>
+      <p class="meta">Prologue · 1차시 · 고등</p>
       <h1>탐구질문카드</h1>
-      <p>먼저 나만의 탐구질문을 씁니다. 모둠이 하나를 고르면, 그 한 줄이 카드가 됩니다.</p>
+      <p>리플릿은 들어가며와 나서며 같은 질문을 둡니다. 먼저 그 한 줄을 적습니다.</p>
+      <label>지금 무슨 생각을 하고 있나요?
+        <textarea id="rc-now" rows="2">${esc(c.now)}</textarea>
+      </label>
       <label>모둠 이름 <input id="rc-group" value="${esc(c.group)}" /></label>
       <label>내 이름 <input id="rc-names" value="${esc(c.names)}" /></label>
-      <label>내가 만든 질문
+      <label>내가 만든 탐구질문
         <textarea id="rc-mine" rows="3">${esc(c.mine)}</textarea>
       </label>
       <label>왜 이 질문인가요
@@ -71,6 +75,7 @@ export function renderAsk(root, onIssued) {
     ...loadCard(),
     group: root.querySelector("#rc-group").value,
     names: root.querySelector("#rc-names").value,
+    now: root.querySelector("#rc-now").value,
     mine: root.querySelector("#rc-mine").value,
     why: root.querySelector("#rc-why").value,
     picked: root.querySelector("#rc-picked").value,
